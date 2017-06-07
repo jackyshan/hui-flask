@@ -30,7 +30,7 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-article-add">
+	<form class="form form-horizontal" id="form-article-add" method="post">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -46,7 +46,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="articlecolumn" class="select">
+				<select name="articlecolumn" class="select" id="selectcategory">
 					<option value="0">全部栏目</option>
 					<option value="1">新闻资讯</option>
 					<option value="11">├行业动态</option>
@@ -146,7 +146,7 @@
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
-				<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
+				<button onClick="article_save();" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -169,6 +169,22 @@
 <script type="text/javascript" src="static/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
 <script type="text/javascript" src="static/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
+function article_save_submit() {
+	console.log('提交')
+
+	// $.post("/article_add",
+ //    {
+	// 	title = $("#articletitle").val(),
+	// 	category = $("#selectcategory").val(),
+	// 	source = $("#sources").val(),
+	// 	update_time = $("#commentdatemin").val(),
+	// 	see_times = 0,
+	// 	publish_status = 0
+ //    },function(data,status){
+ //        alert("数据: \n" + data + "\n状态: " + status);
+ //    });
+}
+
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -182,46 +198,46 @@ $(function(){
 			articletitle:{
 				required:true,
 			},
-			articletitle2:{
-				required:true,
-			},
-			articlecolumn:{
-				required:true,
-			},
-			articletype:{
-				required:true,
-			},
-			articlesort:{
-				required:true,
-			},
-			keywords:{
-				required:true,
-			},
-			abstract:{
-				required:true,
-			},
-			author:{
-				required:true,
-			},
+			// articletitle2:{
+			// 	required:true,
+			// },
+			// articlecolumn:{
+			// 	required:true,
+			// },
+			// articletype:{
+			// 	required:true,
+			// },
+			// articlesort:{
+			// 	required:true,
+			// },
+			// keywords:{
+			// 	required:true,
+			// },
+			// abstract:{
+			// 	required:true,
+			// },
+			// author:{
+			// 	required:true,
+			// },
 			sources:{
 				required:true,
 			},
-			allowcomments:{
-				required:true,
-			},
+			// allowcomments:{
+			// 	required:true,
+			// },
 			commentdatemin:{
 				required:true,
 			},
-			commentdatemax:{
-				required:true,
-			},
+			// commentdatemax:{
+			// 	required:true,
+			// },
 
 		},
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			//$(form).ajaxSubmit();
+			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
 			//parent.$('.btn-refresh').click();
 			parent.layer.close(index);
