@@ -36,15 +36,25 @@ def article_list():
 @app.route('/article_add', methods=["GET", "POST"])
 def article_add():
     if request.method == 'POST':
-        print '---------->>>>hello'
-        title = request.form['articletitle']
-        category = request.form['selectcategory']
-        source = request.form['sources']
-        update_time = request.form['commentdatemin']
-
-        zixun = Zixun(title, category, source, update_time)
-        db_session.add(zixun)
-        db_session.commit()
+        print '---------->>>>hellos'
+        try:
+            print request.form
+            title = request.form['articletitle']
+            category = request.form['articlecolumn']
+            source = request.form['sources']
+            update_time = request.form['commentdatemin']
+            
+            zixun = Zixun(title, category, source, update_time)
+            db_session.add(zixun)
+            db_session.commit()
+            pass
+        except Exception as e:
+            print e
+            raise
+        else:
+            pass
+        finally:
+            pass
         print '数据保存成功'
         
         return ''
