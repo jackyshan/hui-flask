@@ -20,6 +20,10 @@ def login():
         return redirect(url_for('index'))
     return render_template('login.html')
 
+@app.route('/picture-list')
+def picture_list():
+    return render_template('picture-list.html')
+
 @app.route('/index')
 def index():
     return render_template('index.html')
